@@ -2,41 +2,44 @@ import os
 import datetime
 import time
 import sys
+import types
 import win32pipe, win32file, pywintypes
 
 class PipeCommunicator(object):
+    #Connection Status boolean
     Connection = False
-    handle = win32file.CreateFile(None,None,None,None,None,None,None)
+    #Create handle as an Empty Object for a win32file object
+    handle = types.SimpleNamespace()
+    #String object for the OK message
     okResponse = "OK\r\n"
+    #String object for the SUCCESS message
     successResponse = "SUCCESS\r\n"
     
-    itemDictionary = """"""
-    {
-        "Name": "",
-        "Keywords": "",
-        "Max Price": "",
-        "Low Price": "",
-        "Auction": "",
-        "Buy Now": "",
-        "Offer": ""
-    }
-    
+    #List of messages recieved from the host
     msgRecievedList = []
+    #List of messages to send to the host
     msgSendList = []
     
-    def createRecievedMessageList(self, string):
+    #add messages recieved from the host to the list
+    def addRecievedMessageList(self, string):
+        self.msgRecievedList.append(string)
+    
+    #add messages to send to the host to the list
+    def addSendMessageList(self, string):
         self.msgRecievedList.append(string)
         
-    def createSendMessageList(self, string):
-        self.msgRecievedList.append(string)
-        
+    #get messages from the Send Message List and  deletes them from the list
     def retrieveMessageFromSendMessageList(self):
         returnString = self.msgRecievedList[0]
         self.msgRecievedList.remove[0]
         if (self.msgRecievedList.len()<1):
             return False
         return returnString
-        
+       
+    #Open a pipe server and wait for a connection from the host
+    #If a connection is made, the pipe server will send the OK message to the host
+    #If the host sends a message, the pipe server will add the message to the recieved message list
+    #If the host sends the END message, the pipe server will send the SUCCESS message to the host and close the connection 
     def recieveDataFromHost(self, pipeName):
         INIT_RESPONSE = self.CONNECT_TO_PIPE_SERVER_AS_CLIENT(pipeName)
         INIT_RESPONSE_STRING = INIT_RESPONSE[1]
@@ -54,7 +57,7 @@ class PipeCommunicator(object):
         response = str.encode(f"{self.successResponse}")
         win32file.WriteFile(self.handle, response) 
     
-    
+    #Open a pipe server and wait for a connection from the host
     def CONNECT_TO_PIPE_SERVER_AS_CLIENT(self,pipeName):
         print("PIPE CLIENT")
         quit = False
@@ -69,9 +72,9 @@ class PipeCommunicator(object):
                     0,
                     None
                 )
-                res = win32pipe.SetNamedPipeHandleState(self.handle, win32pipe.PIPE_ACCESS_DUPLEX, win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT, None)
-                win32pipe.ConnectNamedPipe(res, None)
-                if res == 0:
+                self.handle = win32pipe.SetNamedPipeHandleState(self.handle, win32pipe.PIPE_ACCESS_DUPLEX, win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT, None)
+                win32pipe.ConnectNamedPipe(self.handle, None)
+                if self.handle == 0:
                     print(f"SetNamedPipeHandleState return code: {res}")
                 while True:
                     resp = win32file.ReadFile(self.handle, 64*1024)
