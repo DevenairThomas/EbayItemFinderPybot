@@ -13,14 +13,14 @@ Add a .env file to your file structure
 Inside add api_key = 'YOUR EBAY API KEY'
 
 ## Usage
-### Finds Currently Listed Items and returns dictionary
-EbayFinderBot
+### EbayFinderBot
+Finds Currently Listed Items and returns dictionary
 
-### Finds Previously Sold Items and returns dictionary
-TODO: EbayFindSoldItems
+### TODO: EbayFindSoldItems
+Finds Previously Sold Items and returns dictionary
 
-### Connects to Visiual Studio Application for Data transfer
-Pipe_Communicator
+### Pipe_Communicator
+Connects to Visiual Studio Application for Data transfer
 
 ### PyProxy
 Finds and returns a proxy to use when searching for items
