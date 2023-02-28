@@ -7,6 +7,7 @@ Python 3.11.1
 pip install ebaysdk
 pip install pywin32
 pip install python-dotenv
+pip install beautifulsoup4
 
 Add a .env file to your file structure
 Inside add api_key = 'YOUR EBAY API KEY'
