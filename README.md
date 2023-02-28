@@ -1,4 +1,4 @@
-# EbayItemFinderPybot
+## EbayItemFinderPybot
 Ebay bot created in Python to find items
 
 ## Installation
@@ -13,21 +13,18 @@ Add a .env file to your file structure
 Inside add api_key = 'YOUR EBAY API KEY'
 
 ## Usage
-
-## Finds Currently Listed Items and returns dictionary
+# Finds Currently Listed Items and returns dictionary
 EbayFinderBot
 
-## TODO
-## Finds Previously Sold Items and returns dictionary
-EbayFindSoldItems
+# Finds Previously Sold Items and returns dictionary
+TODO: EbayFindSoldItems
 
-## Connects to Visiual Studio Application for Data transfer
+# Connects to Visiual Studio Application for Data transfer
 Pipe_Communicator
 
-## TODO
-## Database and transferring Data retrieved to Database
+# TODO: Database and transferring Data retrieved to Database
 
-## Contributing
+# Contributing
 Uhh Stuff... If you want to contribute lets talk pull requests are welcome
 
 ## Fluff
