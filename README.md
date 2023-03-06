@@ -7,24 +7,25 @@ Python 3.11.1
 pip install ebaysdk
 pip install pywin32
 pip install python-dotenv
+pip install beautifulsoup4
 
 Add a .env file to your file structure
 Inside add api_key = 'YOUR EBAY API KEY'
 
 ## Usage
+### EbayFinderBot
+Finds Currently Listed Items and returns dictionary
 
-## Finds Currently Listed Items and returns dictionary
-EbayFinderBot
+### TODO: EbayFindSoldItems
+Finds Previously Sold Items and returns dictionary
 
-## TODO
-## Finds Previously Sold Items and returns dictionary
-EbayFindSoldItems
+### Pipe_Communicator
+Connects to Visiual Studio Application for Data transfer
 
-## Connects to Visiual Studio Application for Data transfer
-Pipe_Communicator
+### PyProxy
+Finds and returns a proxy to use when searching for items
 
-## TODO
-## Database and transferring Data retrieved to Database
+### TODO: Database and transferring Data retrieved to Database
 
 ## Contributing
 Uhh Stuff... If you want to contribute lets talk pull requests are welcome
